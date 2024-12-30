@@ -1,0 +1,533 @@
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: laravel_inventori
+-- ------------------------------------------------------
+-- Server version	8.0.30
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache`
+--
+
+LOCK TABLES `cache` WRITE;
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cache_locks`
+--
+
+DROP TABLE IF EXISTS `cache_locks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache_locks`
+--
+
+LOCK TABLES `cache_locks` WRITE;
+/*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `max_stok` int NOT NULL DEFAULT '500',
+  `warning_stok` int NOT NULL DEFAULT '250',
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Bag Jumbo @500 Kgs','2024-12-01 02:10:52','2024-12-27 07:32:15',NULL,1000,500,'PclwgwbmIRkV3Gcsi1NWYydVikmxZyJ4bafSoLJZ.png'),(2,'Karung Kecil Swa @40 Kgs','2024-12-01 18:03:13','2024-12-27 07:27:30',NULL,50000,25000,'5MldA7QqhGjDf6GBwtIrcpidZXBmqx250avr6atb.png'),(3,'Karung Kecil Yukami @40 Kgs','2024-12-01 18:03:27','2024-12-27 15:09:07',NULL,25000,15000,NULL),(4,'Bag Jumbo @750 Kgs','2024-12-01 18:04:09','2024-12-27 07:32:48',NULL,1000,500,NULL),(11,'Karung Kecil Uk-21 @50 Kgs','2024-12-09 02:34:13','2024-12-27 07:33:05',NULL,25000,10000,NULL),(12,'Karung Kecil Swa @25 Kgs','2024-12-19 08:12:31','2024-12-27 07:34:29','123',10000,5000,NULL);
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `isi_perball`
+--
+
+DROP TABLE IF EXISTS `isi_perball`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `isi_perball` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `isi_perball`
+--
+
+LOCK TABLES `isi_perball` WRITE;
+/*!40000 ALTER TABLE `isi_perball` DISABLE KEYS */;
+INSERT INTO `isi_perball` VALUES (5,'0','Non Ball','2024-12-03 00:58:13','2024-12-03 01:01:11'),(6,'20','Bag Jumbo','2024-12-03 01:11:10','2024-12-12 23:50:10'),(7,'500','Ball Kecil','2024-12-04 01:40:24','2024-12-23 03:16:52'),(9,'1000','Ball Polos','2024-12-23 01:41:24','2024-12-23 03:48:51'),(10,'30','Oke','2024-12-23 03:58:08','2024-12-23 06:21:10');
+/*!40000 ALTER TABLE `isi_perball` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_batches`
+--
+
+DROP TABLE IF EXISTS `job_batches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_batches`
+--
+
+LOCK TABLES `job_batches` WRITE;
+/*!40000 ALTER TABLE `job_batches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_batches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint unsigned NOT NULL,
+  `reserved_at` int unsigned DEFAULT NULL,
+  `available_at` int unsigned NOT NULL,
+  `created_at` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mesin`
+--
+
+DROP TABLE IF EXISTS `mesin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mesin` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mesin`
+--
+
+LOCK TABLES `mesin` WRITE;
+/*!40000 ALTER TABLE `mesin` DISABLE KEYS */;
+INSERT INTO `mesin` VALUES (5,'Mesin 2','2024-12-01 23:24:29','2024-12-01 23:24:29',NULL),(6,'Mesin 4','2024-12-01 23:24:35','2024-12-23 02:26:46',NULL),(8,'Mesin 5','2024-12-02 02:02:18','2024-12-02 02:02:18',NULL),(10,'Mesin 1','2024-12-23 04:22:53','2024-12-23 04:42:12',NULL);
+/*!40000 ALTER TABLE `mesin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2024_11_30_084824_create_categories_table',1),(5,'2024_11_30_085223_create_products_table',1),(6,'2024_11_30_145406_update_description_column_in_products_table',1),(7,'2024_12_01_062702_add_slug_column_in_categories_table',1),(8,'2024_12_02_040403_create_mesin_table',2),(9,'2024_12_02_063152_rename_column_in_products_table',3),(11,'2024_12_02_065411_change_type_mesin',4),(12,'2024_12_02_073845_alter_mesin_column_in_products_table',5),(13,'2024_12_02_080313_drop_column_mesin_di_table_produk',6),(17,'2024_12_02_134652_add_column_to_mesin_table',7),(18,'2024_12_02_135036_add_column_to_categories_table',8),(19,'2024_12_02_140153_create_isi_perball_table',9),(20,'2024_12_02_140154_create_tr_masuk_table',9),(21,'2024_12_02_140219_create_tr_pakai_table',9),(22,'2024_12_03_004156_add_reject_to_transaksi_pakai_table',10),(23,'2024_12_03_013316_change_name_column_in_isi_perball_table',11),(24,'2024_12_09_095320_create_notes_table',12),(25,'2024_12_19_154219_add_photo_to_users_table',13),(26,'2024_12_20_150730_create_logs_table',14),(27,'2024_12_26_230050_remove_slug_from_categories_table',15);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notes`
+--
+
+DROP TABLE IF EXISTS `notes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notes` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `notes_user_id_foreign` (`user_id`),
+  CONSTRAINT `notes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notes`
+--
+
+LOCK TABLES `notes` WRITE;
+/*!40000 ALTER TABLE `notes` DISABLE KEYS */;
+INSERT INTO `notes` VALUES (46,9,'1','2024-12-24 04:21:16','2024-12-24 04:21:16'),(47,9,'test','2024-12-24 05:47:14','2024-12-24 05:47:14'),(48,9,'test','2024-12-24 05:51:47','2024-12-24 05:51:47'),(49,9,'hhh','2024-12-24 05:51:52','2024-12-24 05:51:52'),(50,9,'zwexrtcyvubnijmkl,wz4exrctvybunjmkl,z4x5byuinomp,zctvybuinomp,567vb8un9imop,[4657v8bun9oimp,[','2024-12-24 05:53:49','2024-12-24 05:53:49'),(51,9,'test','2024-12-26 15:33:45','2024-12-26 15:33:45'),(52,9,'test','2024-12-26 15:34:16','2024-12-26 15:34:16'),(53,9,'a','2024-12-27 09:32:22','2024-12-27 09:32:22'),(54,8,'halo manusia','2024-12-28 01:33:02','2024-12-28 01:33:02'),(55,9,'halo juga','2024-12-28 09:16:19','2024-12-28 09:16:19');
+/*!40000 ALTER TABLE `notes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+DROP TABLE IF EXISTS `password_reset_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+LOCK TABLES `password_reset_tokens` WRITE;
+/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `products` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `sku` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stock` int NOT NULL,
+  `category_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `mesin_id` bigint unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_category_id_foreign` (`category_id`),
+  KEY `products_mesin_id_foreign` (`mesin_id`),
+  CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `products_mesin_id_foreign` FOREIGN KEY (`mesin_id`) REFERENCES `mesin` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (5,'Bag 750',NULL,'@40',500,1,'2024-12-02 01:51:11','2024-12-02 01:51:11',6),(8,'rdtfgyubhuk','rytgubhinjkml,;tfugybinjklv','ftgyhnj',6512,1,'2024-12-02 04:57:58','2024-12-02 20:18:56',5),(9,'ggj','strcvhj','dytcvhj',500,1,'2024-12-02 06:40:50','2024-12-02 06:40:50',8);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` VALUES ('vp3U1kQT1vnSPXTRP34mcgL3UKLXszTPUAe50YzU',9,'127.0.0.1','Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36 Edg/131.0.0.0','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',1735384870);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tr_masuk`
+--
+
+DROP TABLE IF EXISTS `tr_masuk`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tr_masuk` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tanggal` date NOT NULL,
+  `masuk_ball` int NOT NULL,
+  `masuk_pcs` int NOT NULL,
+  `isi_perball_id` bigint unsigned NOT NULL,
+  `category_id` bigint unsigned NOT NULL,
+  `jumlah_masuk` int DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tr_masuk_isi_perball_id_foreign` (`isi_perball_id`),
+  KEY `tr_masuk_category_id_foreign` (`category_id`),
+  CONSTRAINT `tr_masuk_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `tr_masuk_isi_perball_id_foreign` FOREIGN KEY (`isi_perball_id`) REFERENCES `isi_perball` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tr_masuk`
+--
+
+LOCK TABLES `tr_masuk` WRITE;
+/*!40000 ALTER TABLE `tr_masuk` DISABLE KEYS */;
+INSERT INTO `tr_masuk` VALUES (47,'2024-12-01',3,0,6,1,60,NULL,'2024-12-04 01:45:15','2024-12-04 02:08:19'),(50,'2024-12-04',2,0,6,1,40,NULL,'2024-12-04 02:08:11','2024-12-04 02:08:11'),(51,'2024-12-04',0,100,5,1,100,NULL,'2024-12-04 02:08:44','2024-12-04 02:08:44'),(54,'2024-12-01',1,0,6,1,20,NULL,'2024-12-04 02:16:39','2024-12-04 02:16:39'),(55,'2024-12-03',0,15,5,1,15,NULL,'2024-12-04 02:41:06','2024-12-04 02:41:06'),(56,'2024-12-04',5,0,7,2,2500,NULL,'2024-12-04 02:51:30','2024-12-04 02:51:30'),(57,'2024-12-03',50,0,7,3,25000,'Kapal BJL','2024-12-04 06:14:54','2024-12-04 06:14:54'),(58,'2024-12-01',2,0,6,1,40,NULL,'2024-12-04 07:04:08','2024-12-04 07:04:08'),(59,'2024-12-05',0,25,5,1,25,NULL,'2024-12-04 17:42:26','2024-12-04 17:42:26'),(60,'2024-12-05',0,26,5,1,26,NULL,'2024-12-04 20:22:57','2024-12-04 20:22:57'),(61,'2024-12-06',20,0,6,1,400,NULL,'2024-12-06 01:00:37','2024-12-06 01:00:37'),(62,'2024-12-01',2,0,6,4,40,NULL,'2024-12-09 00:57:11','2024-12-09 00:57:11'),(63,'2024-12-09',10,0,6,4,200,NULL,'2024-12-09 02:31:24','2024-12-09 02:31:24'),(64,'2024-12-09',25,0,7,11,12500,NULL,'2024-12-09 02:34:44','2024-12-09 02:34:44'),(65,'2024-12-10',40,0,6,1,800,NULL,'2024-12-10 02:53:33','2024-12-10 02:53:33'),(66,'2024-12-05',50,0,7,2,25000,NULL,'2024-12-14 01:19:57','2024-12-14 01:19:57'),(68,'2024-12-01',0,25,5,1,25,NULL,'2024-12-14 01:20:54','2024-12-14 01:20:54'),(69,'2024-12-04',0,15,5,11,15,NULL,'2024-12-14 01:21:16','2024-12-14 01:21:16'),(70,'2024-12-01',10,0,6,4,200,'BJL','2024-12-14 01:30:00','2024-12-14 01:30:00'),(77,'2024-12-27',55,0,6,1,1100,'wexcrtvybunijmklz4ex5cr6tvbuinomkpl3zx5v7yb8mop3zxc6t7vy8bnokmzxc6rv7bunoimps5dr6fvt7binomk','2024-12-27 14:47:21','2024-12-28 00:41:18');
+/*!40000 ALTER TABLE `tr_masuk` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tr_pakai`
+--
+
+DROP TABLE IF EXISTS `tr_pakai`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tr_pakai` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tanggal` date NOT NULL,
+  `pakai_ball` int NOT NULL,
+  `pakai_pcs` int NOT NULL,
+  `isi_perball_id` bigint unsigned NOT NULL,
+  `category_id` bigint unsigned NOT NULL,
+  `mesin_id` bigint unsigned NOT NULL,
+  `jumlah_pakai` int DEFAULT NULL,
+  `reject` int NOT NULL DEFAULT '0',
+  `note` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tr_pakai_isi_perball_id_foreign` (`isi_perball_id`),
+  KEY `tr_pakai_category_id_foreign` (`category_id`),
+  KEY `tr_pakai_mesin_id_foreign` (`mesin_id`),
+  CONSTRAINT `tr_pakai_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `tr_pakai_isi_perball_id_foreign` FOREIGN KEY (`isi_perball_id`) REFERENCES `isi_perball` (`id`),
+  CONSTRAINT `tr_pakai_mesin_id_foreign` FOREIGN KEY (`mesin_id`) REFERENCES `mesin` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tr_pakai`
+--
+
+LOCK TABLES `tr_pakai` WRITE;
+/*!40000 ALTER TABLE `tr_pakai` DISABLE KEYS */;
+INSERT INTO `tr_pakai` VALUES (14,'2024-12-04',2,0,6,1,5,40,0,NULL,'2024-12-04 02:19:27','2024-12-04 02:19:27'),(15,'2024-12-03',3,0,6,1,5,60,0,NULL,'2024-12-04 02:20:06','2024-12-04 02:20:06'),(16,'2024-12-04',2,0,6,1,5,40,0,NULL,'2024-12-04 02:20:56','2024-12-04 02:30:28'),(17,'2024-12-03',2,0,6,1,5,40,0,NULL,'2024-12-04 02:21:40','2024-12-04 02:21:40'),(20,'2024-12-04',2,0,7,2,5,1000,0,NULL,'2024-12-04 02:52:43','2024-12-04 02:52:43'),(21,'2024-12-02',3,0,6,1,5,60,0,NULL,'2024-12-04 06:06:21','2024-12-04 06:06:21'),(22,'2024-12-05',0,60,5,1,5,60,0,NULL,'2024-12-04 17:43:48','2024-12-04 17:43:48'),(23,'2024-12-05',5,0,7,3,5,2510,10,NULL,'2024-12-04 18:58:30','2024-12-04 20:20:55'),(24,'2024-12-05',1,12,6,1,5,44,12,NULL,'2024-12-04 20:10:40','2024-12-23 09:03:11'),(25,'2024-12-05',0,0,5,1,5,2,2,NULL,'2024-12-04 20:22:29','2024-12-04 20:22:29'),(27,'2024-12-04',1,0,6,4,5,20,0,NULL,'2024-12-09 00:57:58','2024-12-09 00:57:58'),(38,'2024-12-07',10,0,7,2,5,5000,0,'s4e5dr6tvbyuinomp,43se5dr6ft7gbunoimps4e5dr6ftvbyunimok','2024-12-14 01:19:05','2024-12-28 00:40:20'),(39,'2024-12-04',5,0,6,4,5,100,0,NULL,'2024-12-14 01:21:49','2024-12-14 01:21:49'),(40,'2024-12-07',0,15,5,3,5,15,0,NULL,'2024-12-14 01:22:02','2024-12-14 01:22:02'),(43,'2024-12-07',2,0,7,3,5,1000,0,NULL,'2024-12-14 01:23:04','2024-12-14 01:23:04'),(45,'2024-12-06',0,25,5,4,5,25,0,NULL,'2024-12-14 01:23:41','2024-12-14 01:23:41'),(49,'2024-12-23',2,3,6,1,5,47,4,'Haha','2024-12-23 09:09:02','2024-12-23 09:09:02'),(50,'2024-12-27',40,0,6,1,5,800,0,NULL,'2024-12-27 10:06:42','2024-12-27 10:07:00'),(51,'2024-12-27',25,0,7,3,5,12500,0,NULL,'2024-12-27 15:10:29','2024-12-27 15:13:02'),(52,'2024-12-28',0,200,5,4,5,200,0,NULL,'2024-12-28 00:38:23','2024-12-28 00:38:47'),(53,'2024-12-28',3,0,7,11,5,1500,0,NULL,'2024-12-28 10:35:08','2024-12-28 10:35:08'),(54,'2024-12-01',1,0,7,11,5,500,0,NULL,'2024-12-28 10:35:27','2024-12-28 10:35:59'),(56,'2024-11-01',5,0,7,11,5,2500,0,NULL,'2024-12-28 11:02:43','2024-12-28 11:02:43');
+/*!40000 ALTER TABLE `tr_pakai` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_logs`
+--
+
+DROP TABLE IF EXISTS `user_logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_logs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `activity_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1743 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_logs`
+--
+
+LOCK TABLES `user_logs` WRITE;
+/*!40000 ALTER TABLE `user_logs` DISABLE KEYS */;
+INSERT INTO `user_logs` VALUES (1727,9,'Cetak Pdf','Report Kategori','Mencetak pdf report per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null,\\\"Nama File\\\":\\\"Laporan Stok 2024-12-01 s.d 2024-12-28 - Semua Kategori.pdf\\\"}\"','2024-12-28 10:49:50','2024-12-28 10:49:50'),(1728,9,'Lihat Data','Report Kategori','Melihat daftar report harian per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 10:58:27','2024-12-28 10:58:27'),(1729,9,'Cetak Excell','Report Kategori','Mencetak Excell report per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":\\\"Semua Kategori\\\",\\\"Nama File\\\":\\\"Laporan Transaksi By Category 2024-12-01 to 2024-12-28 - Semua Kategori.xlsx\\\"}\"','2024-12-28 10:59:46','2024-12-28 10:59:46'),(1730,9,'Lihat Data','Transaksi Pakai','Melihat daftar transaksi Pakai.','\"{\\\"Tanggal MUlai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null,\\\"Mesin\\\":null}\"','2024-12-28 11:02:27','2024-12-28 11:02:27'),(1731,9,'Create','Transaksi Pakai','menambahkan transaksi Pakai baru.','\"{\\\"Tanggal\\\":\\\"2024-11-01\\\",\\\"Pakai Ball\\\":\\\"5\\\",\\\"Isi Perball\\\":\\\"7\\\",\\\"Pakai Pcs\\\":0,\\\"Reject\\\":0,\\\"Jumlah Pakai Ball + Pcs\\\":2500,\\\"Kategori\\\":\\\"11\\\",\\\"Mesin\\\":\\\"5\\\",\\\"Note\\\":null}\"','2024-12-28 11:02:43','2024-12-28 11:02:43'),(1732,9,'Lihat Data','Transaksi Pakai','Melihat daftar transaksi Pakai.','\"{\\\"Tanggal MUlai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null,\\\"Mesin\\\":null}\"','2024-12-28 11:02:44','2024-12-28 11:02:44'),(1733,9,'Lihat Data','Transaksi Masuk','Melihat daftar transaksi masuk.','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal Akhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:12:46','2024-12-28 11:12:46'),(1734,9,'Lihat Data','Report Kategori','Melihat daftar report harian per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:12:59','2024-12-28 11:12:59'),(1735,9,'Lihat Data','Report Kategori','Melihat daftar report harian per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:15:38','2024-12-28 11:15:38'),(1736,9,'Lihat Data','Report Harian','Melihat daftar report harian','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:15:46','2024-12-28 11:15:46'),(1737,9,'Lihat Data','Report Harian','Melihat daftar report harian','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:16:18','2024-12-28 11:16:18'),(1738,9,'Lihat Data','Report Stok Akhir','Melihat daftar report stok akhir semua kategori','\"{\\\"Laporan Stok Per Tanggal\\\":\\\"2024-12-28\\\"}\"','2024-12-28 11:16:22','2024-12-28 11:16:22'),(1739,9,'Lihat Data','Report Stok Akhir','Melihat daftar report stok akhir semua kategori','\"{\\\"Laporan Stok Per Tanggal\\\":\\\"2024-12-28\\\"}\"','2024-12-28 11:16:37','2024-12-28 11:16:37'),(1740,9,'Lihat Data','Report Stok Akhir','Melihat daftar report stok akhir semua kategori','\"{\\\"Laporan Stok Per Tanggal\\\":\\\"2024-12-28\\\"}\"','2024-12-28 11:16:56','2024-12-28 11:16:56'),(1741,9,'Lihat Data','Report Kategori','Melihat daftar report harian per kategori','\"{\\\"Tanggal Mulai\\\":\\\"2024-12-01\\\",\\\"Tanggal AKhir\\\":\\\"2024-12-28\\\",\\\"Kategori\\\":null}\"','2024-12-28 11:17:12','2024-12-28 11:17:12'),(1742,9,'Lihat Data','Report Stok Akhir','Melihat daftar report stok akhir semua kategori','\"{\\\"Laporan Stok Per Tanggal\\\":\\\"2024-12-28\\\"}\"','2024-12-28 11:21:05','2024-12-28 11:21:05');
+/*!40000 ALTER TABLE `user_logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (8,'Saril','Saril@gmail.com',NULL,'123456',NULL,'2024-12-01 19:45:54','2024-12-27 07:21:14','QG173LFs8ql48QGTFqlLMZmCFZkRfMWOvr9q1Kvq.png'),(9,'Rudi Saputra','Rudi@swa.co.id',NULL,'123456',NULL,'2024-12-09 02:10:25','2024-12-24 06:31:23','QY7wOzyBdH7PIamcSSPhglfglX17NFSJbtU3gqmY.jpg'),(14,'Xiang','Xiang@gmail.com',NULL,'123456',NULL,'2024-12-20 02:04:25','2024-12-24 05:46:33','lqWErmufyOb92U0JQuyROcjIcTmeVD4Ihh8vVYsM.png'),(15,'Xiang','1Xiang@gmail.com',NULL,'01258',NULL,'2024-12-20 07:28:22','2024-12-20 15:49:35','QGDJn84SQVB9hOB9OQRToXO8VsouDRuwahBQdmoC.png'),(17,'Riki','Riki@gmail.com',NULL,'123456',NULL,'2024-12-23 15:28:48','2024-12-24 05:46:49','8Azi14VRAjsWfCkN3VL36JnIhQJvzdPGyfF5QIrc.jpg');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'laravel_inventori'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-12-28 22:04:20
