@@ -88,6 +88,41 @@ class DashboardController extends Controller
         ]);
     }
 
+    // private function getAverageDailyUsage($categoryId)
+    // {
+    //     // Ambil tanggal 30 hari yang lalu
+    //     $thirtyDaysAgo = now()->subDays(30);
+
+    //     // Ambil transaksi dalam 30 hari terakhir
+    //     $last30DaysTransactions = TrPakai::where('category_id', $categoryId)
+    //         ->where('tanggal', '>=', $thirtyDaysAgo)
+    //         ->orderBy('tanggal', 'asc')
+    //         ->get();
+
+    //     // Jika tidak ada transaksi dalam 30 hari terakhir
+    //     if ($last30DaysTransactions->isEmpty()) {
+    //         return 'Sudah 1 bulan tidak dipakai';
+    //     }
+
+    //     // Hitung total penggunaan dan jumlah hari unik dalam transaksi
+    //     $totalUsage = 0;
+    //     $daysTracked = [];
+
+    //     foreach ($last30DaysTransactions as $transaction) {
+    //         $totalUsage += $transaction->jumlah_pakai;
+
+    //         // Pastikan tanggal menjadi objek Carbon
+    //         $transactionDate = \Carbon\Carbon::parse($transaction->tanggal);
+    //         $daysTracked[] = $transactionDate->toDateString(); // Simpan tanggal transaksi
+    //     }
+
+    //     // Hitung jumlah hari unik
+    //     $uniqueDays = count(array_unique($daysTracked));
+
+    //     // Hitung rata-rata penggunaan per hari
+    //     return $uniqueDays > 0 ? $totalUsage / $uniqueDays : 0;
+    // }
+
     private function getAverageDailyUsage($categoryId)
     {
         // Ambil tanggal 30 hari yang lalu
@@ -96,28 +131,16 @@ class DashboardController extends Controller
         // Ambil transaksi dalam 30 hari terakhir
         $last30DaysTransactions = TrPakai::where('category_id', $categoryId)
             ->where('tanggal', '>=', $thirtyDaysAgo)
-            ->orderBy('tanggal', 'asc')
             ->get();
 
-        // Jika tidak ada transaksi dalam 30 hari terakhir
+        // Jika tidak ada transaksi
         if ($last30DaysTransactions->isEmpty()) {
-            return 'Sudah 1 bulan tidak dipakai';
+            return 0; // Rata-rata penggunaan adalah 0
         }
 
-        // Hitung total penggunaan dan jumlah hari unik dalam transaksi
-        $totalUsage = 0;
-        $daysTracked = [];
-
-        foreach ($last30DaysTransactions as $transaction) {
-            $totalUsage += $transaction->jumlah_pakai;
-
-            // Pastikan tanggal menjadi objek Carbon
-            $transactionDate = \Carbon\Carbon::parse($transaction->tanggal);
-            $daysTracked[] = $transactionDate->toDateString(); // Simpan tanggal transaksi
-        }
-
-        // Hitung jumlah hari unik
-        $uniqueDays = count(array_unique($daysTracked));
+        // Hitung total penggunaan dan jumlah hari unik
+        $totalUsage = $last30DaysTransactions->sum('jumlah_pakai');
+        $uniqueDays = $last30DaysTransactions->pluck('tanggal')->unique()->count();
 
         // Hitung rata-rata penggunaan per hari
         return $uniqueDays > 0 ? $totalUsage / $uniqueDays : 0;
@@ -125,26 +148,45 @@ class DashboardController extends Controller
 
 
 
+
+    // private function calculateDaysLeft($stok, $categoryId)
+    // {
+    //     // Ambil rata-rata penggunaan harian dari kategori
+    //     $averageDailyUsage = $this->getAverageDailyUsage($categoryId);
+
+    //     // Jika tidak ada rata-rata penggunaan, berarti sudah tidak ada transaksi dalam waktu lama
+    //     if ($averageDailyUsage === null || $averageDailyUsage == 0) {
+    //         return 'Tidak ada penggunaan'; // Bisa mengembalikan pesan atau nilai lainnya
+    //     }
+
+    //     // Hitung sisa hari
+    //     $daysLeft = $stok / $averageDailyUsage;
+
+    //     // Jika stok habis atau kurang dari 1 hari, tampilkan 0
+    //     if ($daysLeft <= 0) {
+    //         return 0;
+    //     }
+
+    //     return round($daysLeft); // Membulatkan hasil ke angka terdekat
+    // }
+
     private function calculateDaysLeft($stok, $categoryId)
     {
         // Ambil rata-rata penggunaan harian dari kategori
         $averageDailyUsage = $this->getAverageDailyUsage($categoryId);
 
-        // Jika tidak ada rata-rata penggunaan, berarti sudah tidak ada transaksi dalam waktu lama
-        if ($averageDailyUsage === null || $averageDailyUsage == 0) {
-            return 'Tidak ada penggunaan'; // Bisa mengembalikan pesan atau nilai lainnya
+        // Jika rata-rata tidak ada atau nol
+        if ($averageDailyUsage <= 0) {
+            return 'Tidak ada penggunaan';
         }
 
         // Hitung sisa hari
         $daysLeft = $stok / $averageDailyUsage;
 
-        // Jika stok habis atau kurang dari 1 hari, tampilkan 0
-        if ($daysLeft <= 0) {
-            return 0;
-        }
-
-        return round($daysLeft); // Membulatkan hasil ke angka terdekat
+        // Jika stok habis atau kurang dari 1 hari, kembalikan 0
+        return $daysLeft > 0 ? round($daysLeft) : 0;
     }
+
 
 
 
