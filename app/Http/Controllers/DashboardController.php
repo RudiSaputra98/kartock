@@ -88,41 +88,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    // private function getAverageDailyUsage($categoryId)
-    // {
-    //     // Ambil tanggal 30 hari yang lalu
-    //     $thirtyDaysAgo = now()->subDays(30);
-
-    //     // Ambil transaksi dalam 30 hari terakhir
-    //     $last30DaysTransactions = TrPakai::where('category_id', $categoryId)
-    //         ->where('tanggal', '>=', $thirtyDaysAgo)
-    //         ->orderBy('tanggal', 'asc')
-    //         ->get();
-
-    //     // Jika tidak ada transaksi dalam 30 hari terakhir
-    //     if ($last30DaysTransactions->isEmpty()) {
-    //         return 'Sudah 1 bulan tidak dipakai';
-    //     }
-
-    //     // Hitung total penggunaan dan jumlah hari unik dalam transaksi
-    //     $totalUsage = 0;
-    //     $daysTracked = [];
-
-    //     foreach ($last30DaysTransactions as $transaction) {
-    //         $totalUsage += $transaction->jumlah_pakai;
-
-    //         // Pastikan tanggal menjadi objek Carbon
-    //         $transactionDate = \Carbon\Carbon::parse($transaction->tanggal);
-    //         $daysTracked[] = $transactionDate->toDateString(); // Simpan tanggal transaksi
-    //     }
-
-    //     // Hitung jumlah hari unik
-    //     $uniqueDays = count(array_unique($daysTracked));
-
-    //     // Hitung rata-rata penggunaan per hari
-    //     return $uniqueDays > 0 ? $totalUsage / $uniqueDays : 0;
-    // }
-
     private function getAverageDailyUsage($categoryId)
     {
         // Ambil tanggal 30 hari yang lalu
