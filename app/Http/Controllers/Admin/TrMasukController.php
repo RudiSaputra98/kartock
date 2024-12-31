@@ -187,10 +187,10 @@ class TrMasukController extends Controller
         // Validasi tambahan jika masuk_ball < 1, set ke 0 dan isi_perball_id ke 5
         if ($request->masuk_ball < 1 || is_null($request->masuk_ball)) {
             $validated['masuk_ball'] = 0;
-            $validated['isi_perball_id'] = 5;
+            $validated['isi_perball_id'] = 11;
         }
 
-        if ($request->masuk_ball >= 1 && $request->isi_perball_id == 5) {
+        if ($request->masuk_ball >= 1 && $request->isi_perball_id == 11) {
             return redirect()->back()->withErrors(['isi_perball_id' => 'Jika Isian Ball diisi maka harusnya ini tidak boleh kosong.']);
         }
 
@@ -269,7 +269,7 @@ class TrMasukController extends Controller
         }
 
         // Validation if masuk_ball >= 1, isi_perball_id should not be 5
-        if ($request->masuk_ball >= 1 && $request->isi_perball_id == 5) {
+        if ($request->masuk_ball >= 1 && $request->isi_perball_id == 11) {
             return redirect()->back()->withErrors(['isi_perball_id' => 'Jika Ball diisi maka isi per ball tidak boleh 0']);
         }
 
