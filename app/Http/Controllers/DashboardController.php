@@ -146,30 +146,6 @@ class DashboardController extends Controller
         return $uniqueDays > 0 ? $totalUsage / $uniqueDays : 0;
     }
 
-
-
-
-    // private function calculateDaysLeft($stok, $categoryId)
-    // {
-    //     // Ambil rata-rata penggunaan harian dari kategori
-    //     $averageDailyUsage = $this->getAverageDailyUsage($categoryId);
-
-    //     // Jika tidak ada rata-rata penggunaan, berarti sudah tidak ada transaksi dalam waktu lama
-    //     if ($averageDailyUsage === null || $averageDailyUsage == 0) {
-    //         return 'Tidak ada penggunaan'; // Bisa mengembalikan pesan atau nilai lainnya
-    //     }
-
-    //     // Hitung sisa hari
-    //     $daysLeft = $stok / $averageDailyUsage;
-
-    //     // Jika stok habis atau kurang dari 1 hari, tampilkan 0
-    //     if ($daysLeft <= 0) {
-    //         return 0;
-    //     }
-
-    //     return round($daysLeft); // Membulatkan hasil ke angka terdekat
-    // }
-
     private function calculateDaysLeft($stok, $categoryId)
     {
         // Ambil rata-rata penggunaan harian dari kategori
@@ -186,11 +162,6 @@ class DashboardController extends Controller
         // Jika stok habis atau kurang dari 1 hari, kembalikan 0
         return $daysLeft > 0 ? round($daysLeft) : 0;
     }
-
-
-
-
-
 
     private function getTransactions($startDate, $endDate)
     {
@@ -253,7 +224,7 @@ class DashboardController extends Controller
         // Menghitung persentase berdasarkan stok dan max_stok
         $percentage = 0;
         if ($maxStok > 0) {
-            $percentage = ($stok / $maxStok) * 150;
+            $percentage = ($stok / $maxStok) * 140;
         }
 
         // Menentukan lebar progress bar berdasarkan kondisi stok
