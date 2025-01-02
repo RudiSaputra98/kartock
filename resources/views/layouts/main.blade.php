@@ -12,11 +12,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('/templates/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('/templates/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
     <link href="{{ asset('css/css.css') }}" rel="stylesheet">
 
 </head>
@@ -69,12 +69,11 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('templates/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('templates/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- DataTables  & Plugins -->
-    <script src="{{ asset('templates/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="{{ asset('templates/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('templates/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('templates/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('templates/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
@@ -85,12 +84,11 @@
     <script src="{{ asset('templates/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('templates/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('templates/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('templates/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('templates/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('templates/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script> --}}
 
-
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/urut.js') }}"></script>
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
 
 </body>
