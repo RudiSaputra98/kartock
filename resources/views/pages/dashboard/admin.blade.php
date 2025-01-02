@@ -165,10 +165,10 @@
                                                     <span class="text-warning">{{ $data['daysLeft'] }}</span>
                                                 @endif
                                             </small>
-                                            <small class="text-muted">
+                                            {{-- <small class="text-muted">
                                                 Max:
                                                 <small>{{ $data['max_stok'] ? number_format($data['max_stok'] * 1.4, 0, ',', '.') : '-' }}</small>
-                                            </small>
+                                            </small> --}}
                                         </div>
 
                                     </div>
