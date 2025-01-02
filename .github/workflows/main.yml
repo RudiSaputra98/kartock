@@ -14,4 +14,3 @@ jobs:
         server: ftp.swakaolin.co.id
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir : /DATA/thomas/kartock.swakaolin.co.id/xiang/
