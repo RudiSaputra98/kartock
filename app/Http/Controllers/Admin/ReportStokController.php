@@ -19,11 +19,10 @@ class ReportStokController extends Controller
     public function index(Request $request)
     {
         // Mendapatkan transaksi terakhir per kategori
-        $startDate = $request->input('start_date', now()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', now()->toDateString());
 
         // Ambil data transaksi berdasarkan filter tanggal
-        $transactions = $this->getTransactions($startDate, $endDate);
+        $transactions = $this->getTransactions($endDate);
 
         // Ambil transaksi terakhir per kategori
         $groupedData = $this->getLastTransactionPerCategory($transactions);
@@ -35,11 +34,10 @@ class ReportStokController extends Controller
         // Mengirim data ke view
         return view('pages.report_stok.index', [
             'groupedData' => $groupedData,
-            'startDate' => $startDate,
             'endDate' => $endDate,
         ]);
     }
-    private function getTransactions($startDate, $endDate)
+    private function getTransactions($endDate)
     {
         $transactions = TrMasuk::where('tanggal', '<=', $endDate) // Ambil semua data hingga tanggal akhir
             ->selectRaw('tanggal, category_id, SUM(jumlah_masuk) as tr_masuk, 0 as tr_pakai')
@@ -139,10 +137,10 @@ class ReportStokController extends Controller
         $endDate = $request->input('end_date', now()->toDateString());
 
         // Ambil data transaksi berdasarkan filter tanggal
-        $transactions = $this->getTransactions($endDate, $endDate);
+        $transactions = $this->getTransactions($endDate);
 
         // Ambil transaksi dalam rentang tanggal dan filter kategori
-        $transactions = $this->getTransactions($endDate, $endDate);
+        $transactions = $this->getTransactions($endDate);
 
         if ($transactions->isEmpty()) {
             // Mengarahkan kembali dengan pesan error yang dapat muncul di halaman
@@ -197,7 +195,7 @@ class ReportStokController extends Controller
         $category = $validated['category'] ?? null;
 
         // Ambil transaksi dalam rentang tanggal dan filter kategori
-        $transactions = $this->getTransactions($endDate, $endDate);
+        $transactions = $this->getTransactions($endDate);
 
         if ($transactions->isEmpty()) {
             // Mengarahkan kembali dengan pesan error yang dapat muncul di halaman

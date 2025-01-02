@@ -20,11 +20,11 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         // Mendapatkan transaksi terakhir per kategori
-        $startDate = $request->input('start_date', now()->startOfMonth()->toDateString());
+        // $startDate = $request->input('start_date', now()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', now()->toDateString());
 
         // Ambil data transaksi berdasarkan filter tanggal
-        $transactions = $this->getTransactions($startDate, $endDate);
+        $transactions = $this->getTransactions($endDate);
 
         // Ambil transaksi terakhir per kategori
         $groupedData = $this->getLastTransactionPerCategory($transactions);
@@ -41,52 +41,45 @@ class DashboardController extends Controller
 
         // Format data log
         foreach ($logs as $log) {
-            $jsonData = json_decode($log->data, true);
-            $formattedData = '';
-
-            // Format data berdasarkan kunci tertentu
-            foreach ($jsonData as $key => $value) {
-                if ($key == 'Isi Perball') {
-                    $value = IsiPerball::find($value)->name ?? 'Nama tidak ditemukan';
-                }
-                if ($key == 'isi_perball_id') {
-                    $value = IsiPerball::find($value)->name ?? 'Nama tidak ditemukan';
-                }
-                if ($key == 'Kategori') {
-                    $value = Category::find($value)->name ?? 'Semua Kategori';
-                }
-                if ($key == 'Mesin') {
-                    $value = Mesin::find($value)->name ?? 'Semua Mesin';
-                }
-                if ($key == 'mesin_id') {
-                    $value = Mesin::find($value)->name ?? 'Semua Mesin';
-                }
-                if ($key == 'category') {
-                    $value = Category::find($value)->name ?? 'Semua Kategori';
-                }
-                if ($key == 'category_id') {
-                    $value = Category::find($value)->name ?? 'Semua Kategori';
-                }
-
-                // Gabungkan hasil format key dan value
-                $formattedData .= "{$key}: {$value}\n";
-            }
-
-            // Hapus newline ekstra di akhir
-            $log->formattedData = rtrim($formattedData);
+            $log->formattedData = $this->formatLogData(json_decode($log->data, true));
         }
+
 
 
         // Mengirim data ke view
         return view('pages.dashboard.admin', [
             'groupedData' => $groupedData,
-            'startDate' => $startDate,
+            // 'startDate' => $startDate,
             'endDate' => $endDate,
             'user' => $user,
             'notes' => $notes,
             'logs' => $logs, // Tambahkan formattedData di logs
         ]);
     }
+
+    private function formatLogData($data)
+    {
+        $formatted = [];
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'Isi Perball':
+                case 'isi_perball_id':
+                    $value = IsiPerball::find($value)->name ?? 'Nama tidak ditemukan';
+                    break;
+                case 'Kategori':
+                case 'category_id':
+                    $value = Category::find($value)->name ?? 'Semua Kategori';
+                    break;
+                case 'Mesin':
+                case 'mesin_id':
+                    $value = Mesin::find($value)->name ?? 'Semua Mesin';
+                    break;
+            }
+            $formatted[] = "{$key}: {$value}";
+        }
+        return implode("\n", $formatted);
+    }
+
 
     private function getAverageDailyUsage($categoryId)
     {
@@ -128,23 +121,23 @@ class DashboardController extends Controller
         return $daysLeft > 0 ? round($daysLeft) : 0;
     }
 
-    private function getTransactions($startDate, $endDate)
+
+    private function getTransactions($endDate)
     {
-        // Ambil transaksi berdasarkan rentang tanggal
-        $transactions = TrMasuk::whereBetween('tanggal', [$startDate, $endDate])
+        $queryMasuk = TrMasuk::where('tanggal', '<=', $endDate) // Ambil semua data hingga tanggal akhir
             ->selectRaw('tanggal, category_id, SUM(jumlah_masuk) as tr_masuk, 0 as tr_pakai')
             ->groupBy('tanggal', 'category_id');
 
-        // Query TrPakai
-        $queryPakai = TrPakai::whereBetween('tanggal', [$startDate, $endDate])
+        $queryPakai = TrPakai::where('tanggal', '<=', $endDate) // Ambil semua data hingga tanggal akhir
             ->selectRaw('tanggal, category_id, 0 as tr_masuk, SUM(jumlah_pakai) as tr_pakai')
             ->groupBy('tanggal', 'category_id');
 
-        // Gabungkan kedua query dengan UNION
-        return $transactions->union($queryPakai)
-            ->orderBy('tanggal', 'asc')
+        // Gabungkan kedua query
+        return $queryMasuk->union($queryPakai)
+            ->orderBy('category_id', 'asc')
             ->get();
     }
+
 
     private function getLastTransactionPerCategory($transactions)
     {
