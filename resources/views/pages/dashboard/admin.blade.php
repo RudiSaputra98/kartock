@@ -118,7 +118,7 @@
     </div>
 
     <div class="card">
-        <div class="card-body">
+        <div style="max-height: 340px; overflow-y: auto; padding: 30px;">
             <div class="table-responsive">
 
                 <table class="table table-bordered table-striped">
