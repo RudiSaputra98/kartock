@@ -124,7 +124,6 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr style="text-align: center;">
-                            <th style="width: 5%;">No</th>
                             <th style="width: 8%;">Tanggal</th>
                             <th style="width: 27%;">Kategori</th>
                             <th style="width: 10%;">Stok (Pcs)</th>
@@ -134,7 +133,6 @@
                     <tbody>
                         @forelse ($groupedData as $key => $data)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ \Carbon\Carbon::parse($data['tanggal'])->format('d/m/Y') }}</td>
                                 <td>{{ $data['category'] }}</td>
                                 <td>{{ $data['stok'] ? number_format($data['stok'], 0, ',', '.') : '-' }}</td>
