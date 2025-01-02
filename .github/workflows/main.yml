@@ -15,3 +15,5 @@ jobs:
         server: ftp.swakaolin.co.id
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
+        exclude: |
+          public/templates/
