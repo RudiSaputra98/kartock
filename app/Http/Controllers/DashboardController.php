@@ -20,7 +20,6 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         // Mendapatkan transaksi terakhir per kategori
-        // $startDate = $request->input('start_date', now()->startOfMonth()->toDateString());
         $endDate = $request->input('end_date', now()->toDateString());
 
         // Ambil data transaksi berdasarkan filter tanggal
