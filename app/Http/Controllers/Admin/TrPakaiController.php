@@ -320,7 +320,7 @@ class TrPakaiController extends Controller
             "pakai_pcs" => "nullable|integer|min:0",
             "isi_perball_id" => "required",
             "category_id" => "required",
-            "reject" => "nullable",
+            "reject" => "nullable|integer",
             "mesin_id" => "required",
             "note" => "nullable",
         ]);

@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="masuk_ball" class="form-label">Karung masuk (Ball)</label>
-                            <input type="text" name="masuk_ball" id="masuk_ball"
+                            <input type="number" name="masuk_ball" id="masuk_ball"
                                 class="form-control @error('masuk_ball') is-invalid @enderror"
                                 value="{{ old('masuk_ball', $tr_masuk->masuk_ball) }}">
 
@@ -65,7 +65,7 @@
 
                         <div class="form-group">
                             <label for="masuk_pcs" class="form-label">Karung masuk (Pcs)</label>
-                            <input type="text" name="masuk_pcs" id="masuk_pcs"
+                            <input type="number" name="masuk_pcs" id="masuk_pcs"
                                 class="form-control @error('masuk_pcs') is-invalid @enderror"
                                 value="{{ old('masuk_pcs', $tr_masuk->masuk_pcs) }}">
 
@@ -96,10 +96,7 @@
                             <label for="note" class="form-label">Catatan</label>
                             <textarea name="note" id="note " cols="30" rows="3"
                                 class="form-control @error('note') is-invalid @enderror">{{ old('note', $tr_masuk->note) }}</textarea>
-
                         </div>
-
-
                     </div>
                 </div>
 

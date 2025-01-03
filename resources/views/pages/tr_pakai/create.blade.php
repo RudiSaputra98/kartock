@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="pakai_ball" class="form-label">Pakai Karung (Ball)</label>
-                            <input type="text" name="pakai_ball" id="pakai_ball"
+                            <input type="number" name="pakai_ball" id="pakai_ball"
                                 class="form-control @error('pakai_ball') is-invalid @enderror"
                                 value="{{ old('pakai_ball') }}">
 
@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="pakai_pcs" class="form-label">Pakai Karung (Pcs)</label>
-                            <input type="text" name="pakai_pcs" id="pakai_pcs"
+                            <input type="number" name="pakai_pcs" id="pakai_pcs"
                                 class="form-control @error('pakai_pcs') is-invalid @enderror"
                                 value="{{ old('pakai_pcs') }}">
 
@@ -73,7 +73,7 @@
 
                         <div class="form-group">
                             <label for="reject" class="form-label">Reject (Pcs)</label>
-                            <input type="text" name="reject" id="reject"
+                            <input type="number" name="reject" id="reject"
                                 class="form-control @error('reject') is-invalid @enderror" value="{{ old('reject') }}">
 
                             @error('reject')
