@@ -118,22 +118,23 @@
     </div>
 
     <div class="card">
-        <div style="max-height: 340px; overflow-y: auto; padding: 30px;">
+        <div class="card-header">
+            <h3 class="card-title font-weight-bold">Laporan Stok</h3>
+        </div>
+        <div style="max-height: 340px; overflow-y: auto; padding: 20px;">
             <div class="table-responsive">
 
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr style="text-align: center;">
-                            <th style="width: 8%;">Tanggal</th>
                             <th style="width: 27%;">Kategori</th>
                             <th style="width: 10%;">Stok (Pcs)</th>
-                            <th style="width: 40%;">Indikator</th>
+                            <th style="width: 48%;">Indikator</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($groupedData as $key => $data)
                             <tr>
-                                <td>{{ \Carbon\Carbon::parse($data['tanggal'])->format('d/m/Y') }}</td>
                                 <td>{{ $data['category'] }}</td>
                                 <td>{{ $data['stok'] ? number_format($data['stok'], 0, ',', '.') : '-' }}</td>
                                 <td>
