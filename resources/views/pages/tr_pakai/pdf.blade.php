@@ -107,7 +107,7 @@
 
 <body>
     <div class="header">
-        <h1>Laporan Transaksi Pakai</h1>
+        <h1>Laporan Transaksi Pemakaian Karung</h1>
         <h2>Periode: {{ \Carbon\Carbon::parse($startDate)->translatedFormat('d F Y') }} -
             {{ \Carbon\Carbon::parse($endDate)->translatedFormat('d F Y') }}</h2>
         <table style="width: 100%; margin-bottom: 10px; border-collapse: collapse;">
