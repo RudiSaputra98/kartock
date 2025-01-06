@@ -33,6 +33,9 @@
             color: black;
         }
 
+
+
+
         @media (max-width: 767px) {
             table {
                 font-size: 12px;
@@ -121,7 +124,7 @@
         <div class="card-header">
             <h3 class="card-title font-weight-bold">Laporan Stok</h3>
         </div>
-        <div style="max-height: 340px; overflow-y: auto; padding: 20px;">
+        <div style="max-height: 400px; overflow-y: auto; padding: 20px;">
             <div class="table-responsive">
 
                 <table class="table table-bordered table-striped">

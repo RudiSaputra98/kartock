@@ -48,7 +48,6 @@ class DashboardController extends Controller
         // Mengirim data ke view
         return view('pages.dashboard.admin', [
             'groupedData' => $groupedData,
-            // 'startDate' => $startDate,
             'endDate' => $endDate,
             'user' => $user,
             'notes' => $notes,
